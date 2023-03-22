@@ -1,0 +1,57 @@
+.bannerImage {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.5s ease;
+
+  &::after {
+    content: "";
+    display: block;
+    background-color: rgb(0 0 0 / 41%);
+    height: 100%;
+  }
+}
+
+.bannerTitle {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  max-width: 1162px;
+  padding: 0 20px;
+  width: 100%;
+  transform: translate(-50%, -50%);
+
+  & img {
+    width: 100%;
+  }
+  & img:first-child {
+    margin-bottom: 25px;
+  }
+}
+
+.carouselPosition {
+  position: absolute;
+  z-index: 10;
+  top: 54%;
+  left: 50%;
+  transform: translate(-80%, 16px);
+}
+
+.scrollDown {
+  background: url(~/src/assets/icons/ArrowDown.svg) right 7px no-repeat;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding-right: 40px;
+  cursor: pointer;
+
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 38px;
+
+  color: white;
+  -webkit-text-stroke: 0.4px black;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

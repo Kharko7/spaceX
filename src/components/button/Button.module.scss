@@ -1,0 +1,26 @@
+.button {
+  font-family: "Syne";
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  height: 53px;
+  text-transform: uppercase;
+  background-color: #d3eaff;
+  &.action:active {
+    transform: scale(0.97);
+  }
+}
+
+.small {
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+}
+
+.medium {
+  width: 163px;
+}
+
+.large {
+  width: 278px;
+}

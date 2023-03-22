@@ -1,0 +1,53 @@
+.container {
+  max-width: 1310px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px 70px;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: end;
+  & button {
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 29px;
+    color: #556b84;
+    background-color: transparent;
+  }
+}
+
+.cardsBlock {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12px 40px -12px;
+  margin-bottom: 40px;
+}
+
+.cardBody {
+  flex: 1 1 33.333%;
+  padding: 0 12px;
+  position: relative;
+  margin-bottom: 24px;
+
+  &::after {
+    content: "";
+    border: 1px solid #d3eaff;
+    height: 100%;
+    width: Calc(100% - 24px);
+    position: absolute;
+    top: 0;
+    left: 12px;
+    z-index: -1;
+  }
+}
+
+.helperCaption {
+  font-family: "Lato";
+  text-align: center;
+  width: 100%;
+  color: grey;
+  font-size: 30px;
+  padding-top: 50px;
+}

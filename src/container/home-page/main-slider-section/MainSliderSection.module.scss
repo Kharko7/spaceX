@@ -1,0 +1,47 @@
+.container {
+  max-width: 1310px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 99px 15px;
+}
+
+.headerTours {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 43px;
+}
+
+.toursTitle {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 38px;
+  text-transform: uppercase;
+}
+
+.cardsBlock {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.cardBody {
+  flex: 1 1 33.333%;
+  border: 1px solid #d3eaff;
+}
+
+.notFoundText {
+  font-family: "Lato";
+  text-align: center;
+  width: 100%;
+  color: grey;
+  font-size: 30px;
+  padding-top: 50px;
+}
+
+.loading {
+  font-size: 46px;
+  padding: 40px 0;
+  color: grey;
+  text-align: center;
+}
