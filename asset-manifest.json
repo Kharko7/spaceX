@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/spaceX/static/css/main.4587728c.css",
+    "main.js": "/spaceX/static/js/main.1c6dfb97.js",
+    "static/media/Banner2.jpg": "/spaceX/static/media/Banner2.9e2a4efcc9068b7fd06a.jpg",
+    "static/media/Banner1.jpg": "/spaceX/static/media/Banner1.9e5bbd9456e315a02a93.jpg",
+    "static/media/Banner3.jpg": "/spaceX/static/media/Banner3.eed07d050843da92ad2a.jpg",
+    "static/media/BannerCropped.jpg": "/spaceX/static/media/BannerCropped.525206750ac6e000afb8.jpg",
+    "static/media/image2.jpg": "/spaceX/static/media/image2.5402a738fdf53422752b.jpg",
+    "static/media/image1.jpg": "/spaceX/static/media/image1.dc132d170ff9aab962b5.jpg",
+    "static/media/image3.jpg": "/spaceX/static/media/image3.49cf5c5951f67eb8d52a.jpg",
+    "static/media/Logo.svg": "/spaceX/static/media/Logo.4050e38b5d25052d4a0f.svg",
+    "static/media/The-space-is-waiting-for.svg": "/spaceX/static/media/The-space-is-waiting-for.d8cc48d01af372ec3593118172fe2f26.svg",
+    "static/media/You.svg": "/spaceX/static/media/You.0423c114fc9bdd4ae50927b9381e82ca.svg",
+    "static/media/Heart.svg": "/spaceX/static/media/Heart.45bcdabb861b14a1494972d88569b869.svg",
+    "static/media/Delete.svg": "/spaceX/static/media/Delete.63fc25cbc78b1fac1a009d4551bfbc15.svg",
+    "static/media/ArrowDown.svg": "/spaceX/static/media/ArrowDown.c80c3f31113b2bb7e7c7.svg",
+    "index.html": "/spaceX/index.html",
+    "static/media/ArrowLeft.svg": "/spaceX/static/media/ArrowLeft.1d17abac79588e50d03bfcb1816de5e6.svg",
+    "static/media/ArrowRight.svg": "/spaceX/static/media/ArrowRight.59e0b544ae4bd5260e6590659b1f9339.svg",
+    "main.4587728c.css.map": "/spaceX/static/css/main.4587728c.css.map",
+    "main.1c6dfb97.js.map": "/spaceX/static/js/main.1c6dfb97.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4587728c.css",
+    "static/js/main.1c6dfb97.js"
+  ]
+}
