@@ -32,6 +32,10 @@
 }
 
 .navMenu {
+  @media (max-width: 650px) {
+    display: none;
+  }
+
   & ul {
     display: flex;
     gap: 32px;
@@ -73,4 +77,10 @@
 .navigationButton {
   display: flex;
   gap: 12px;
+
+  @media (max-width: 800px) {
+    & > :last-child {
+      display: none;
+    }
+  }
 }

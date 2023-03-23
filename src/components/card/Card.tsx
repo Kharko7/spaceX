@@ -15,27 +15,28 @@ interface CardProps {
 
 const Card = ({ img, title, description, icon, backgroundColorIcon = '', onClickBuy, onClickIconBtn }: CardProps) => {
   return (
-    <div className={styles.cardColumn}>
-      <img src={img} alt='img' />
-      <div className={styles.description}>
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-      <div className={styles.buttonsBody}>
-        <Button
-          pressAction={false}
-          text='Buy'
-          size='large'
-          onClick={onClickBuy}
-        />
-        <IconButton
-          icon={icon}
-          onClick={onClickIconBtn}
-          backgroundColor={backgroundColorIcon}
-        />
+    <div className={styles.cardBody}>
+      <div className={styles.cardColumn}>
+        <img src={img} alt='img' />
+        <div className={styles.description}>
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </div>
+        <div className={styles.buttonsBody}>
+          <Button
+            pressAction={false}
+            text='Buy'
+            size='large'
+            onClick={onClickBuy}
+          />
+          <IconButton
+            icon={icon}
+            onClick={onClickIconBtn}
+            backgroundColor={backgroundColorIcon}
+          />
+        </div>
       </div>
     </div>
-
   );
 };
 

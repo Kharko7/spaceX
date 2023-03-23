@@ -1,8 +1,12 @@
-export const getLengthDisplayedCards = (currentLength: number) => {
-  if (currentLength % 3 === 0) {
+import { resizeSlides } from "./resize-slides";
 
-    return currentLength;
+export const getLengthDisplayedCards = (currentLengthData: number) => {
+  const lengthDisplayedCards = resizeSlides();
+
+  if (currentLengthData % lengthDisplayedCards === 0) {
+
+    return currentLengthData;
   }
 
-  return 3 - (currentLength % 3) + currentLength;
+  return lengthDisplayedCards - (currentLengthData % lengthDisplayedCards) + currentLengthData;
 };

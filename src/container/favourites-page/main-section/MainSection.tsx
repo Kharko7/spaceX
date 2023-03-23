@@ -1,5 +1,5 @@
 import { RocketData } from 'interface/Rocket';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { getFromLocalStorage, setToLocalStorage } from 'service/local-storage.service';
 import styles from './MainSection.module.scss';
@@ -9,59 +9,71 @@ import { fillArray } from 'utils/fill-array';
 import { getLengthDisplayedCards } from 'utils/get-length-displayed-cards';
 
 const MainSection = () => {
-  const [favouritesData, setFavouritesData] = useState<RocketData[]>(getFromLocalStorage('favourites'));
-  const lengthCards = getLengthDisplayedCards(favouritesData.length);
+  const [favoriteFlightsData, setFavoriteFlightsData] = useState<RocketData[]>(getFromLocalStorage('favourites'));
+  const [lengthCards, setLengthCards] = useState<number>(0);
 
-  if (favouritesData.length > 0 && favouritesData.length < lengthCards) {
-    const restElements = fillArray(lengthCards, favouritesData.length);
-    setFavouritesData((prevArray) => [...prevArray, ...restElements]);
-  }
+  const handleResize = useCallback(
+    () => {
+      const length = getLengthDisplayedCards(favoriteFlightsData.length);
+      setLengthCards(length);
+    }, [favoriteFlightsData.length]);
 
-  const handleClearAll = () => {
-    setFavouritesData([]);
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [handleResize]);
+
+  const removeAllCards = () => {
+    setFavoriteFlightsData([]);
+    setLengthCards(0);
     setToLocalStorage('favourites', []);
   };
 
   const removeCard = (id: string) => {
-    const filterStorageData = favouritesData.filter((rocketData: RocketData | null) => {
+    const filterStorageData = favoriteFlightsData.filter((rocketData: RocketData | null) => {
       if (rocketData === null) {
         return false;
       }
       return rocketData.id !== id;
     });
 
-    setFavouritesData(filterStorageData);
+    setFavoriteFlightsData(filterStorageData);
+    setLengthCards(filterStorageData.length);
     setToLocalStorage('favourites', filterStorageData);
   };
 
-  const cards = favouritesData.map((tourData: RocketData | null, index: number) => {
+  const displayFavoriteData = favoriteFlightsData.map(data => ({ ...data }));
+
+  if (displayFavoriteData.length > 0 && displayFavoriteData.length < lengthCards) {
+    const emptyElements = fillArray(lengthCards, favoriteFlightsData.length);
+    displayFavoriteData.push(...emptyElements);
+  }
+
+  const cards = displayFavoriteData.map((tourData: RocketData | null, index: number) => {
     return (
-      <div
-        className={styles.cardBody}
-        key={tourData ? tourData.id : index}
-      >
-        {tourData !== null
-          ? <Card
-            img={tourData.image}
-            title={tourData.name}
-            description={tourData.description}
-            onClickBuy={() => { }}
-            icon={<Delete />}
-            onClickIconBtn={() => removeCard(tourData.id)}
-          />
-          : null
-        }
-      </div>
+      tourData !== null
+        ? <Card
+          img={tourData.image}
+          title={tourData.name}
+          description={tourData.description}
+          onClickBuy={() => { }}
+          icon={<Delete />}
+          onClickIconBtn={() => removeCard(tourData.id)}
+          key={tourData.id}
+        />
+        : <div className={styles.emptyCard} key={index}></div>
     );
   });
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        {lengthCards > 0 && <button onClick={handleClearAll} >Clear all</button>}
+        {displayFavoriteData.length > 0 && <button onClick={removeAllCards} >Clear all</button>}
       </div>
       <div className={styles.cardsBlock}>
-        {lengthCards
+        {displayFavoriteData.length
           ? cards
           : <p className={styles.helperCaption}>You don't have favorite flights</p>
         }

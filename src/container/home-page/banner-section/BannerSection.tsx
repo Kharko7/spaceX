@@ -21,16 +21,16 @@ const BannerSection = () => {
       className={styles.bannerImage}
       style={{ backgroundImage: `url(${bannerImg[currentIdx].url})` }}
     >
-      <div className={styles.bannerTitle}>
+      <div className={styles.titleAndCarouselPosition}>
         <img src={SpaceIsWaiting} alt='SpaceIsWaiting' />
         <img src={You} alt='You' />
-      </div>
-      <div className={styles.carouselPosition}>
-        <CarouselDots
-          currentIdx={currentIdx}
-          length={bannerImg.length}
-          onChange={handleSwitchBunner}
-        />
+        <div className={styles.carouselPosition}>
+          <CarouselDots
+            currentIdx={currentIdx}
+            length={bannerImg.length}
+            onChange={handleSwitchBunner}
+          />
+        </div>
       </div>
       <Link
         className={styles.scrollDown}

@@ -1,23 +1,26 @@
-import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { RocketData } from "interface/Rocket";
-import { addImageToObject } from "utils/add-image-to-object";
-import { getRockets } from "container/home-page/main-slider-section/operations/rockets-query";
 import { fillArray } from "utils/fill-array";
+import { resizeSlides } from "utils/resize-slides";
 
-export const useGetRocketCard = (displayedCards: number) => {
-  const [rocketsData, setRocketsData] = useState<RocketData[]>([]);
-  const [controller, setController] = useState<number[]>([0, displayedCards]);
+export const useSlider = (rocketsData: RocketData[]) => {
+  const [displayedCards, setdDisplayedCards] = useState<number>(3);
+  const [controller, setController] = useState<number[]>([]);
 
   const [firstIndex, lastIndex] = controller;
 
-  const { loading, error } = useQuery(getRockets, {
-    onCompleted: ({ rockets }) => {
-      const data = rockets.map(addImageToObject);
-      setRocketsData(data);
-    }
-  });
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleResize = () => {
+    const length = resizeSlides();
+    setdDisplayedCards(length);
+    setController([0, length]);
+  };
 
   const nextSlide = () => {
     const isLastItem = lastIndex >= rocketsData.length;
@@ -26,7 +29,6 @@ export const useGetRocketCard = (displayedCards: number) => {
     if (isLastItem || arrayIsEmpty) {
       return;
     }
-
     setController(([firstIdx, lastIdx]) => [firstIdx + 1, lastIdx + 1]);
   };
   const previousSlide = () => {
@@ -50,17 +52,15 @@ export const useGetRocketCard = (displayedCards: number) => {
   const displayRocketsData: Array<RocketData | null> = rocketsData.slice(firstIndex, lastIndex);
 
   if (displayRocketsData.length > 0 && displayRocketsData.length < displayedCards) {
-    const restElements = fillArray(displayedCards, displayRocketsData.length);
+    const emptyElements = fillArray(displayedCards, displayRocketsData.length);
 
-    displayRocketsData.push(...restElements);
+    displayRocketsData.push(...emptyElements);
   }
 
   return {
     displayRocketsData,
-    loading,
-    error,
-    rocketsData,
     lastIndex,
+    displayedCards,
     nextSlide,
     previousSlide,
     handleDotsSwitches,

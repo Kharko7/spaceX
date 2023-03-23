@@ -1,23 +1,35 @@
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+
 import styles from './MainSliderSection.module.scss';
 import Card from 'components/card';
-import IconButton from 'components/icon-button';
-import { useGetRocketCard } from 'hooks/use-get-rocket-cards';
+import { useSlider } from 'hooks/use-slider';
 import { RocketData } from 'interface/Rocket';
 import CarouselDots from 'components/carousel-dots';
 import { useFavourites } from 'hooks/use-favourites';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
 import ArrowSwitches from './arrow-switches';
+import { addImageToObject } from 'utils/add-image-to-object';
+import { getRockets } from './operations/rockets-query';
 
 const MainSliderSection = () => {
+  const [rocketsData, setRocketsData] = useState<RocketData[]>([]);
+
+  const { loading } = useQuery(getRockets, {
+    onCompleted: ({ rockets }) => {
+      const data = rockets.map(addImageToObject);
+      setRocketsData(data);
+    }
+  });
+
   const {
     displayRocketsData,
-    loading,
-    rocketsData,
     lastIndex,
+    displayedCards,
     nextSlide,
     previousSlide,
     handleDotsSwitches
-  } = useGetRocketCard(3);
+  } = useSlider(rocketsData);
 
   const { handleFavouritesBtn, isInFavourites } = useFavourites();
 
@@ -28,23 +40,18 @@ const MainSliderSection = () => {
     }
 
     return (
-      <div
-        className={styles.cardBody}
-        key={rocketData ? rocketData.id : index}
-      >
-        {rocketData !== null
-          ? <Card
-            img={rocketData.image}
-            title={rocketData.name}
-            description={rocketData.description}
-            icon={<Heart fill={active ? 'white' : ''} />}
-            backgroundColorIcon={active ? '#DD377D' : ''}
-            onClickIconBtn={() => handleFavouritesBtn(rocketData)}
-            onClickBuy={() => { }}
-          />
-          : null
-        }
-      </div>
+      rocketData !== null
+        ? <Card
+          img={rocketData.image}
+          title={rocketData.name}
+          description={rocketData.description}
+          icon={<Heart fill={active ? 'white' : ''} />}
+          backgroundColorIcon={active ? '#DD377D' : ''}
+          onClickIconBtn={() => handleFavouritesBtn(rocketData)}
+          onClickBuy={() => { }}
+          key={rocketData.id}
+        />
+        : <div className={styles.emptyCard} key={index}></div>
     );
   });
 
@@ -71,8 +78,8 @@ const MainSliderSection = () => {
       </div>
       {displayRocketsData.length > 0 &&
         <CarouselDots
-          currentIdx={Math.floor((lastIndex - 1) / 3)}
-          length={Math.ceil(rocketsData.length / 3)}
+          currentIdx={Math.floor((lastIndex - 1) / displayedCards)}
+          length={Math.ceil(rocketsData.length / displayedCards)}
           color='black'
           onChange={handleDotsSwitches}
         />

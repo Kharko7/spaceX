@@ -1,3 +1,35 @@
+.cardBody {
+  flex: 1 1 33.333%;
+  padding: 0 12px;
+  position: relative;
+  margin-bottom: 24px;
+  @media (max-width: 1160px) {
+    flex: 1 1 50%;
+  }
+  @media (max-width: 800px) {
+    flex: 1 1 100%;
+  }
+  @media (max-width: 500px) {
+    padding: 0;
+  }
+
+  &::after {
+    content: "";
+    border: 1px solid #d3eaff;
+    height: 100%;
+    width: Calc(100% - 24px);
+    position: absolute;
+    top: 0;
+    left: 12px;
+    z-index: -1;
+
+    @media (max-width: 500px) {
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
 .cardColumn {
   display: flex;
   flex-direction: column;
@@ -13,6 +45,11 @@
 .description {
   padding: 32px 32px 64px;
   flex-grow: 1;
+
+  @media (max-width: 500px) {
+    padding: 32px 10px 40px;
+  }
+
   & h2 {
     font-weight: 700;
     line-height: 29px;
@@ -31,6 +68,10 @@
     padding: 0 22px;
     max-height: 260px;
     overflow: auto;
+
+    @media (max-width: 800px) {
+      height: 190px;
+    }
 
     &::-webkit-scrollbar {
       width: 10px;
