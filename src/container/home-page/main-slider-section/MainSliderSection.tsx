@@ -15,7 +15,7 @@ import { getRockets } from './operations/rockets-query';
 const MainSliderSection = () => {
   const [rocketsData, setRocketsData] = useState<RocketData[]>([]);
 
-  const { loading } = useQuery(getRockets, {
+  const { loading, error } = useQuery(getRockets, {
     onCompleted: ({ rockets }) => {
       const data = rockets.map(addImageToObject);
       setRocketsData(data);
@@ -55,16 +55,19 @@ const MainSliderSection = () => {
     );
   });
 
-  if (loading) {
-    return <h1 className={styles.loading}>Loading....</h1>;
+  if (loading || error) {
+    return <h1 className={styles.loadingOrError}>
+      {loading ? 'Loading....' : `Error: ${error?.message}`}
+    </h1>;
   }
 
   return (
     <div id='popularTours' className={styles.container}  >
       <div className={styles.headerTours}>
         <h2 className={styles.toursTitle}>popular tours</h2>
-        {displayRocketsData.length > 0 &&
-          <ArrowSwitches
+        {displayRocketsData.length > 0
+          && rocketsData.length > displayRocketsData.length
+          && <ArrowSwitches
             previous={previousSlide}
             next={nextSlide}
           />
