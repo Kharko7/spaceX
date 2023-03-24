@@ -7,12 +7,12 @@ import { useShowFavouritesFlights } from 'hooks/use-show-favourites-flights';
 
 const MainSection = () => {
   const {
-    displayFavoriteData,
+    displayFavoriteFlights,
     removeCard,
     removeAllCards
   } = useShowFavouritesFlights();
 
-  const cards = displayFavoriteData.map((tourData: RocketData | null, index: number) => {
+  const cards = displayFavoriteFlights.map((tourData: RocketData | null, index: number) => {
     return (
       tourData !== null
         ? <Card
@@ -31,10 +31,10 @@ const MainSection = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        {displayFavoriteData.length > 0 && <button onClick={removeAllCards} >Clear all</button>}
+        {displayFavoriteFlights.length > 0 && <button onClick={removeAllCards} >Clear all</button>}
       </div>
       <div className={styles.cardsBlock}>
-        {displayFavoriteData.length
+        {displayFavoriteFlights.length
           ? cards
           : <p className={styles.helperCaption}>You don't have favorite flights</p>
         }

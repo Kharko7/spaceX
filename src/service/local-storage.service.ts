@@ -1,10 +1,9 @@
 const spaceX = 'spaceX';
 
-type StorageKey = 'bannerIdx' | 'favourites';
+type StorageKey = 'bannerIdx';
 
 const StorageSpaceX = {
   bannerIdx: 0,
-  favourites: [],
 };
 
 if (!localStorage.getItem(spaceX)) {

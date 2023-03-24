@@ -2,7 +2,7 @@
   "name": "unsenset-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kharko7.github.io",
+  "homepage": "https://kharko7.github.io/spaceX/",
   "dependencies": {
     "@apollo/client": "^3.7.10",
     "@testing-library/jest-dom": "^5.16.5",
@@ -21,6 +21,7 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
+    "recoil": "^0.7.7",
     "sass": "^1.58.3",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

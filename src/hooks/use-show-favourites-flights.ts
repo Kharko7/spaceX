@@ -1,19 +1,20 @@
 import { useState, useEffect, useCallback } from "react";
+import { useRecoilState } from 'recoil';
 
 import { RocketData } from "interface/Rocket";
 import { getLengthDisplayedCards } from "utils/get-length-displayed-cards";
-import { getFromLocalStorage, setToLocalStorage } from "service/local-storage.service";
 import { fillArray } from "utils/fill-array";
+import { favouritesFlightsAtom } from "recoil/atom/favouritesFlightsAtom";
 
 export const useShowFavouritesFlights = () => {
-  const [favoriteFlightsData, setFavoriteFlightsData] = useState<RocketData[]>(getFromLocalStorage('favourites'));
+  const [favoriteFlights, setFavoriteFlights] = useRecoilState(favouritesFlightsAtom);
   const [lengthCards, setLengthCards] = useState<number>(0);
 
   const handleResize = useCallback(
     () => {
-      const length = getLengthDisplayedCards(favoriteFlightsData.length);
+      const length = getLengthDisplayedCards(favoriteFlights.length);
       setLengthCards(length);
-    }, [favoriteFlightsData.length]);
+    }, [favoriteFlights.length]);
 
   useEffect(() => {
     handleResize();
@@ -23,33 +24,31 @@ export const useShowFavouritesFlights = () => {
   }, [handleResize]);
 
   const removeAllCards = () => {
-    setFavoriteFlightsData([]);
+    setFavoriteFlights([]);
     setLengthCards(0);
-    setToLocalStorage('favourites', []);
   };
 
   const removeCard = (id: string) => {
-    const filterStorageData = favoriteFlightsData.filter((rocketData: RocketData | null) => {
+    const filterStorageData = favoriteFlights.filter((rocketData: RocketData | null) => {
       if (rocketData === null) {
         return false;
       }
       return rocketData.id !== id;
     });
 
-    setFavoriteFlightsData(filterStorageData);
+    setFavoriteFlights(filterStorageData);
     setLengthCards(filterStorageData.length);
-    setToLocalStorage('favourites', filterStorageData);
   };
 
-  const displayFavoriteData = favoriteFlightsData.map(data => ({ ...data }));
+  const displayFavoriteFlights = [...favoriteFlights];
 
-  if (displayFavoriteData.length > 0 && displayFavoriteData.length < lengthCards) {
-    const emptyElements = fillArray(lengthCards, favoriteFlightsData.length);
-    displayFavoriteData.push(...emptyElements);
+  if (displayFavoriteFlights.length > 0 && displayFavoriteFlights.length < lengthCards) {
+    const emptyElements = fillArray(lengthCards, favoriteFlights.length);
+    displayFavoriteFlights.push(...emptyElements);
   }
 
   return {
-    displayFavoriteData,
+    displayFavoriteFlights,
     removeCard,
     removeAllCards,
   };

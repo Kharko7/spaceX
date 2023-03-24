@@ -1,33 +1,19 @@
-import { useState } from "react";
+import { useRecoilState } from 'recoil';
 
 import { RocketData } from "interface/Rocket";
-import { getFromLocalStorage, setToLocalStorage } from "service/local-storage.service";
+import { favouritesFlightsAtom } from 'recoil/atom/favouritesFlightsAtom';
 
 export const useFavourites = () => {
-  const [favouritesItems, setFavouritesItems] = useState<RocketData[]>(getFromLocalStorage('favourites'));
-
-  const handleFavouritesBtn = (rocketData: RocketData) => {
-    if (favouritesItems.length === 0) {
-      const tour = [rocketData];
-      setFavouritesItems(tour);
-      setToLocalStorage('favourites', tour);
-
-      return;
-    }
-
-    if (isInFavourites(rocketData.id)) {
-      const filteredFavouritesData = favouritesItems.filter((rocket) => rocket.id !== rocketData.id);
-      setFavouritesItems(filteredFavouritesData);
-      setToLocalStorage('favourites', filteredFavouritesData);
-    } else {
-      const newFavouritesData = [...favouritesItems, rocketData];
-      setFavouritesItems(newFavouritesData);
-      setToLocalStorage('favourites', newFavouritesData);
-    }
-  };
+  const [favoriteFlights, setFavoriteFlights] = useRecoilState(favouritesFlightsAtom);
 
   const isInFavourites = (id: string) => {
-    return favouritesItems.some((rocketData: RocketData) => rocketData.id === id);
+    return favoriteFlights.some((rocketData: RocketData) => rocketData.id === id);
+  };
+
+  const handleFavouritesBtn = (rocketData: RocketData) => {
+    isInFavourites(rocketData.id)
+      ? setFavoriteFlights(currVal => currVal.filter((rocket) => rocket.id !== rocketData.id))
+      : setFavoriteFlights(currVal => [...currVal, rocketData]);
   };
 
   return {

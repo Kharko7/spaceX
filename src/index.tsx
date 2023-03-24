@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
 import ReactDOM from 'react-dom/client';
+import { RecoilRoot } from "recoil";
 
 import './styles/index.scss';
 import App from './App';
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ApolloProvider>
+  <RecoilRoot>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
+  </RecoilRoot >
 );
