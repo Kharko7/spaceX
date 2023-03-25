@@ -1,14 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
+import { createGlobalStyle } from 'styled-components';
 
-body {
-  font-family: "Syne";
-}
 
+export default createGlobalStyle`
 * {
   padding: 0;
   margin: 0;
   border: 0px;
+  font-family: "Syne";
 }
 
 *,
@@ -47,3 +45,5 @@ ul li {
 button {
   cursor: pointer;
 }
+
+`;

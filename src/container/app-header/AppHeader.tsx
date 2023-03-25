@@ -4,8 +4,10 @@ import { navigationMenu } from 'constants/navigationMenu';
 import { RoutesPath } from 'routes/path';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
 import styles from './AppHeader.module.scss';
-import Button from 'components/button';
-import IconButton from 'components/icon-button';
+ 
+import Container from 'components/styles/Container.styles';
+import Button from 'components/button/Button';
+import IconButton from 'components/icon-button/IconButton';
 
 const AppHeader = () => {
   const location = useLocation();
@@ -35,7 +37,7 @@ const AppHeader = () => {
 
   return (
     <div className={styles.position}>
-      <div className={styles.container}>
+      <Container>
         <div className={styles.headerBody}>
           <Link
             className={styles.logo}
@@ -50,17 +52,19 @@ const AppHeader = () => {
             <IconButton
               onClick={navigateToFavourites}
               backgroundColor={pathNameToFavourites ? '#DD377D' : ''}
-              icon={
+              children={
                 <Heart fill={pathNameToFavourites ? 'white' : ''} />
               }
             />
             <Button
+              pressAction
               onClick={navigateToLogin}
-              text='sign in'
-            />
+            >
+              sign in
+            </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
 
   );

@@ -1,7 +1,6 @@
-
-import Button from 'components/button';
-import IconButton from 'components/icon-button';
-import styles from './Card.module.scss';
+import Button from "components/button/Button";
+import IconButton from "components/icon-button/IconButton";
+import { ButtonContainer, Column, Description, Wrapper } from "./Card.styles";
 
 interface CardProps {
   img: string;
@@ -14,29 +13,30 @@ interface CardProps {
 }
 
 const Card = ({ img, title, description, icon, backgroundColorIcon = '', onClickBuy, onClickIconBtn }: CardProps) => {
+
   return (
-    <div className={styles.cardBody}>
-      <div className={styles.cardColumn}>
+    <Wrapper>
+      <Column>
         <img src={img} alt='img' />
-        <div className={styles.description}>
+        <Description>
           <h2>{title}</h2>
           <p>{description}</p>
-        </div>
-        <div className={styles.buttonsBody}>
+        </Description>
+        <ButtonContainer>
           <Button
-            pressAction={false}
-            text='Buy'
-            size='large'
+            size='lg'
             onClick={onClickBuy}
-          />
+          >
+            Buy
+          </Button>
           <IconButton
-            icon={icon}
+            children={icon}
             onClick={onClickIconBtn}
             backgroundColor={backgroundColorIcon}
           />
-        </div>
-      </div>
-    </div>
+        </ButtonContainer>
+      </Column>
+    </Wrapper>
   );
 };
 

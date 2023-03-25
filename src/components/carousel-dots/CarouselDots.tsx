@@ -1,6 +1,4 @@
-import cn from "classnames";
-
-import styles from './CarouselDots.module.scss';
+import { StyledCarouselDots, Flex } from "./CarouselDots.styles";
 
 interface CarouselDotsProps {
   currentIdx: number;
@@ -14,25 +12,21 @@ const CarouselDots = ({ currentIdx, length, color = 'white', onChange }: Carouse
 
   for (let index = 0; index < length; index++) {
     const element =
-      <button
+      <StyledCarouselDots
         onClick={() => onChange(index)}
         key={index}
         disabled={index === currentIdx}
-        data-color={color}
-        className={cn(
-          styles.carouselSwitches,
-          styles[color],
-          index === currentIdx && styles.active,
-        )}
+        color={color}
+        active={index === currentIdx}
       />;
 
     elements.push(element);
   }
 
   return (
-    <div className={styles.carousel}>
+    <Flex>
       {elements}
-    </div>
+    </Flex >
   );
 };
 

@@ -3,10 +3,10 @@ import { Link } from 'react-scroll';
 
 import styles from './BannerSection.module.scss';
 import { bannerImg } from 'constants/bannerSection';
-import CarouselDots from 'components/carousel-dots';
 import You from 'assets/text/You.svg';
 import SpaceIsWaiting from 'assets/text/The-space-is-waiting-for.svg';
 import { getFromLocalStorage, setToLocalStorage } from 'service/local-storage.service';
+import CarouselDots from 'components/carousel-dots/CarouselDots';
 
 const BannerSection = () => {
   const [currentIdx, setCurrentIdx] = useState<number>(getFromLocalStorage('bannerIdx'));

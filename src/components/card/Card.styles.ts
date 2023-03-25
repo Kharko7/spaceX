@@ -1,16 +1,19 @@
-.cardBody {
+import styled  from 'styled-components';
+
+export const Wrapper = styled.div`
   flex: 1 1 33.333%;
   padding: 0 12px;
   position: relative;
   margin-bottom: 24px;
-  @media (max-width: 1160px) {
-    flex: 1 1 50%;
+
+  ${({ theme }) => theme.media.extraLarge} {
+     flex: 1 1 50%;
   }
-  @media (max-width: 800px) {
-    flex: 1 1 100%;
+  ${({ theme }) => theme.media.large} {
+     flex: 1 1 100%;
   }
-  @media (max-width: 500px) {
-    padding: 0;
+  ${({ theme }) => theme.media.small} {
+     padding: 0;
   }
 
   &::after {
@@ -23,32 +26,33 @@
     left: 12px;
     z-index: -1;
 
-    @media (max-width: 500px) {
+    ${({ theme }) => theme.media.small} {
       left: 0;
       width: 100%;
     }
   }
-}
+`;
 
-.cardColumn {
+export const Column = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
   height: 100%;
+  
   & img {
     height: 296px;
     width: 100%;
     object-fit: cover;
   }
-}
+`;
 
-.description {
+export const Description = styled.div`
   padding: 32px 32px 64px;
   flex-grow: 1;
 
-  @media (max-width: 500px) {
-    padding: 32px 10px 40px;
-  }
+  ${({ theme }) => theme.media.small} {
+      padding: 32px 10px 40px;
+    }
 
   & h2 {
     font-weight: 700;
@@ -69,7 +73,7 @@
     max-height: 260px;
     overflow: auto;
 
-    @media (max-width: 800px) {
+    ${({ theme }) => theme.media.large} {
       height: 190px;
     }
 
@@ -89,10 +93,12 @@
       }
     }
   }
-}
+`;
 
-.buttonsBody {
-  margin: 0 auto;
-  display: flex;
-  gap: 16px;
-}
+export const ButtonContainer = styled.div`
+   margin: 0 auto;
+   display: flex;
+   gap: 16px;
+`;
+
+

@@ -1,26 +1,22 @@
-import styles from './IconButton.module.scss';
+import { StyledIconButton } from "./IconButton.styles";
 
 interface IconButtonProps {
-  icon: React.ReactNode;
+  children: React.ReactNode;
   size?: string;
   backgroundColor?: string;
   onClick: () => void;
 }
 
-const IconButton = ({ icon, size = '', backgroundColor = '', onClick }: IconButtonProps) => {
-
+const IconButton = ({ children, size = '', backgroundColor = '', onClick }: IconButtonProps) => {
   return (
-    <button
-      className={styles.button}
+    <StyledIconButton
+      size={size}
+      backgroundColor={backgroundColor}
       onClick={onClick}
-      style={{
-        width: size + 'px',
-        height: size + 'px',
-        backgroundColor
-      }}>
-      {icon}
-    </button >
+    >
+      {children}
+    </StyledIconButton>
   );
 };
 
-export default IconButton; 
+export default IconButton;

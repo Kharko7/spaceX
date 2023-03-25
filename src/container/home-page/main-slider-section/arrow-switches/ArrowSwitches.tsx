@@ -1,7 +1,7 @@
 import styles from './ArrowSwitches.module.scss';
 import { ReactComponent as ArrowLeft } from 'assets/icons/ArrowLeft.svg';
 import { ReactComponent as ArrowRight } from 'assets/icons/ArrowRight.svg';
-import IconButton from 'components/icon-button';
+import IconButton from 'components/icon-button/IconButton';
 
 interface ArrowSwitchesProps {
   next: () => void;
@@ -13,12 +13,12 @@ const ArrowSwitches = ({ previous, next }: ArrowSwitchesProps) => {
   return (
     <div className={styles.arrowSwitches}>
       <IconButton
-        icon={<ArrowLeft />}
+        children={<ArrowLeft />}
         size='44'
         onClick={previous}
       />
       <IconButton
-        icon={<ArrowRight />}
+        children={<ArrowRight />}
         onClick={next}
         size='44'
       />

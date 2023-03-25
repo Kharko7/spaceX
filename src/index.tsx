@@ -3,7 +3,6 @@ import { ApolloProvider } from '@apollo/client';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from "recoil";
 
-import './styles/index.scss';
 import App from './App';
 import { client } from "apollo/client";
 

@@ -2,8 +2,9 @@ import { RocketData } from 'interface/Rocket';
 
 import styles from './MainSection.module.scss';
 import { ReactComponent as Delete } from 'assets/icons/Delete.svg';
-import Card from 'components/card';
+ 
 import { useShowFavouritesFlights } from 'hooks/use-show-favourites-flights';
+import Card from 'components/card/Card';
 
 const MainSection = () => {
   const {

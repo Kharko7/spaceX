@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import styles from './MainSliderSection.module.scss';
-import Card from 'components/card';
+ 
 import { useSlider } from 'hooks/use-slider';
 import { RocketData } from 'interface/Rocket';
-import CarouselDots from 'components/carousel-dots';
 import { useFavourites } from 'hooks/use-favourites';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
 import ArrowSwitches from './arrow-switches';
 import { addImageToObject } from 'utils/add-image-to-object';
 import { getRockets } from './operations/rockets-query';
+import CarouselDots from 'components/carousel-dots/CarouselDots';
+import Card from 'components/card/Card';
 
 const MainSliderSection = () => {
   const [rocketsData, setRocketsData] = useState<RocketData[]>([]);

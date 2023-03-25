@@ -1,27 +1,22 @@
-import cn from "classnames";
-import styles from './Button.module.scss';
+import { StyledButton } from "./Button.styles";
 
 interface ButtonProps {
-  text: string;
-  size?: 'small' | 'medium' | 'large';
+  children: string;
+  size?: 'sm' | 'md' | 'lg';
   pressAction?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-const Button = ({ text, size = 'medium', pressAction = true, onClick }: ButtonProps) => {
-
+const Button = ({ size = 'md', children, pressAction = false, onClick }: ButtonProps) => {
   return (
-    <button
-      className={cn(
-        styles.button,
-        styles[size],
-        pressAction && styles.action
-      )}
+    <StyledButton
+      size={size}
       onClick={onClick}
+      pressAction={pressAction}
     >
-      {text}
-    </button >
+      {children}
+    </StyledButton>
   );
 };
 
-export default Button; 
+export default Button;
