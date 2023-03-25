@@ -3,11 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { navigationMenu } from 'constants/navigationMenu';
 import { RoutesPath } from 'routes/path';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
-import styles from './AppHeader.module.scss';
- 
-import Container from 'components/styles/Container.styles';
 import Button from 'components/button/Button';
 import IconButton from 'components/icon-button/IconButton';
+import {
+  HeaderFlex,
+  Logo,
+  NavButtons,
+  NavMenu,
+  Position
+} from './AppHeader.styles';
+import Container from 'components/styles/Container.styles';
 
 const AppHeader = () => {
   const location = useLocation();
@@ -36,19 +41,16 @@ const AppHeader = () => {
   ));
 
   return (
-    <div className={styles.position}>
+    <Position>
       <Container>
-        <div className={styles.headerBody}>
-          <Link
-            className={styles.logo}
-            to={RoutesPath.home}>
-          </Link>
-          <nav className={styles.navMenu}>
+        <HeaderFlex>
+          <Logo to={RoutesPath.home} />
+          <NavMenu>
             <ul >
               {navigationList}
             </ul>
-          </nav>
-          <div className={styles.navigationButton}>
+          </NavMenu>
+          <NavButtons>
             <IconButton
               onClick={navigateToFavourites}
               backgroundColor={pathNameToFavourites ? '#DD377D' : ''}
@@ -62,13 +64,11 @@ const AppHeader = () => {
             >
               sign in
             </Button>
-          </div>
-        </div>
+          </NavButtons>
+        </HeaderFlex>
       </Container>
-    </div>
-
+    </Position>
   );
-
 };
 
 export default AppHeader;

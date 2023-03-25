@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Home from 'pages/home';
 import { RoutesPath } from './path';
-import Favourites from 'pages/favourites';
-import Login from 'pages/login';
+import Home from 'pages/home/Home';
+import Favourites from 'pages/favourites/Favourites';
+import Login from 'pages/login/Login';
 
 const AppRouter = () => {
 

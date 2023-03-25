@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
-import styles from './MainSliderSection.module.scss';
- 
 import { useSlider } from 'hooks/use-slider';
 import { RocketData } from 'interface/Rocket';
 import { useFavourites } from 'hooks/use-favourites';
 import { ReactComponent as Heart } from 'assets/icons/Heart.svg';
-import ArrowSwitches from './arrow-switches';
 import { addImageToObject } from 'utils/add-image-to-object';
-import { getRockets } from './operations/rockets-query';
 import CarouselDots from 'components/carousel-dots/CarouselDots';
-import Card from 'components/card/Card';
+import Card from 'container/card/Card';
+import ArrowSwitches from 'components/arrow-switches/ArrowSwitches';
+import EmptyCard from 'components/styles/EmptyCard.styles';
+import Container from 'components/styles/Container.styles';
+import NotificationText from 'components/styles/NotificationText';
+import { CardsBlock, HeaderTour, TitleTour, Wrapper } from './MainSliderSection.styles';
+import { getRockets } from './operations/rockets-query';
 
 const MainSliderSection = () => {
   const [rocketsData, setRocketsData] = useState<RocketData[]>([]);
@@ -52,43 +54,44 @@ const MainSliderSection = () => {
           onClickBuy={() => { }}
           key={rocketData.id}
         />
-        : <div className={styles.emptyCard} key={index}></div>
+        : <EmptyCard key={index} />
     );
   });
 
-  if (loading || error) {
-    return <h1 className={styles.loadingOrError}>
-      {loading ? 'Loading....' : `Error: ${error?.message}`}
-    </h1>;
-  }
-
   return (
-    <div id='popularTours' className={styles.container}  >
-      <div className={styles.headerTours}>
-        <h2 className={styles.toursTitle}>popular tours</h2>
-        {displayRocketsData.length > 0
-          && rocketsData.length > displayRocketsData.length
-          && <ArrowSwitches
-            previous={previousSlide}
-            next={nextSlide}
+    <Wrapper id='popularTours'>
+      <Container>
+        <HeaderTour>
+          <TitleTour>popular tours</TitleTour>
+          {displayRocketsData.length > 0
+            && rocketsData.length > displayRocketsData.length
+            && <ArrowSwitches
+              previous={previousSlide}
+              next={nextSlide}
+            />
+          }
+        </HeaderTour>
+        {loading || error
+          ? <NotificationText>
+            {loading ? 'Loading....' : `Error: ${error?.message}`}
+          </NotificationText>
+          : <CardsBlock>
+            {displayRocketsData.length
+              ? cards
+              : <NotificationText>Popular tours not found</NotificationText>
+            }
+          </CardsBlock>
+        }
+        {displayRocketsData.length > 0 &&
+          <CarouselDots
+            currentIdx={Math.floor((lastIndex - 1) / displayedCards)}
+            length={Math.ceil(rocketsData.length / displayedCards)}
+            color='black'
+            onChange={handleDotsSwitches}
           />
         }
-      </div>
-      <div className={styles.cardsBlock}>
-        {displayRocketsData.length
-          ? cards
-          : <p className={styles.notFoundText}>Popular tours not found</p>
-        }
-      </div>
-      {displayRocketsData.length > 0 &&
-        <CarouselDots
-          currentIdx={Math.floor((lastIndex - 1) / displayedCards)}
-          length={Math.ceil(rocketsData.length / displayedCards)}
-          color='black'
-          onChange={handleDotsSwitches}
-        />
-      }
-    </div >
+      </Container >
+    </Wrapper>
   );
 };
 

@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-scroll';
 
-import styles from './BannerSection.module.scss';
 import { bannerImg } from 'constants/bannerSection';
 import You from 'assets/text/You.svg';
 import SpaceIsWaiting from 'assets/text/The-space-is-waiting-for.svg';
 import { getFromLocalStorage, setToLocalStorage } from 'service/local-storage.service';
 import CarouselDots from 'components/carousel-dots/CarouselDots';
+import { BannerImage, Carousel, ScrollTo, TitleAndCarouselPosition } from './BannerSection.styles';
 
 const BannerSection = () => {
   const [currentIdx, setCurrentIdx] = useState<number>(getFromLocalStorage('bannerIdx'));
@@ -17,31 +16,27 @@ const BannerSection = () => {
   };
 
   return (
-    <div
-      className={styles.bannerImage}
-      style={{ backgroundImage: `url(${bannerImg[currentIdx].url})` }}
-    >
-      <div className={styles.titleAndCarouselPosition}>
+    <BannerImage url={bannerImg[currentIdx].url}   >
+      <TitleAndCarouselPosition>
         <img src={SpaceIsWaiting} alt='SpaceIsWaiting' />
         <img src={You} alt='You' />
-        <div className={styles.carouselPosition}>
+        <Carousel>
           <CarouselDots
             currentIdx={currentIdx}
             length={bannerImg.length}
             onChange={handleSwitchBunner}
           />
-        </div>
-      </div>
-      <Link
-        className={styles.scrollDown}
+        </Carousel>
+      </TitleAndCarouselPosition>
+      <ScrollTo
         to="popularTours"
         offset={3}
         smooth={true}
         duration={500}
       >
         Explore tours
-      </Link>
-    </div >
+      </ScrollTo>
+    </BannerImage >
   );
 };
 

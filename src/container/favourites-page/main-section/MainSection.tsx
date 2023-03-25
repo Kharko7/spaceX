@@ -1,10 +1,11 @@
-import { RocketData } from 'interface/Rocket';
-
-import styles from './MainSection.module.scss';
 import { ReactComponent as Delete } from 'assets/icons/Delete.svg';
- 
+import { RocketData } from 'interface/Rocket';
 import { useShowFavouritesFlights } from 'hooks/use-show-favourites-flights';
-import Card from 'components/card/Card';
+import Card from 'container/card/Card';
+import { CardsBlock, Header } from './MainSection.styles';
+import EmptyCard from 'components/styles/EmptyCard.styles';
+import NotificationText from 'components/styles/NotificationText';
+import Container from 'components/styles/Container.styles';
 
 const MainSection = () => {
   const {
@@ -25,22 +26,23 @@ const MainSection = () => {
           onClickIconBtn={() => removeCard(tourData.id)}
           key={tourData.id}
         />
-        : <div className={styles.emptyCard} key={index}></div>
+        : <EmptyCard key={index} />
     );
   });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        {displayFavoriteFlights.length > 0 && <button onClick={removeAllCards} >Clear all</button>}
-      </div>
-      <div className={styles.cardsBlock}>
+    <Container>
+      <Header>
+        {displayFavoriteFlights.length > 0
+          && <button onClick={removeAllCards} >Clear all</button>}
+      </Header>
+      <CardsBlock>
         {displayFavoriteFlights.length
           ? cards
-          : <p className={styles.helperCaption}>You don't have favorite flights</p>
+          : <NotificationText>You don't have favorites flights</NotificationText>
         }
-      </div>
-    </div>
+      </CardsBlock>
+    </Container>
   );
 };
 

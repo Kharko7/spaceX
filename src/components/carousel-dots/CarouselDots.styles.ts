@@ -18,7 +18,6 @@ export const StyledCarouselDots = styled.button<StyledCarouselDotsProps>`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: transparent;
 
   ${({ active, color }) => active && css`
     &::before {

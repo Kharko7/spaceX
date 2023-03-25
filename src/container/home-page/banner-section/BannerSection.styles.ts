@@ -1,8 +1,20 @@
-.bannerImage {
+import styled, { css } from 'styled-components';
+import Arrow from 'assets/icons/ArrowDown.svg';
+import { Link } from 'react-scroll';
+
+interface BannerImageProps {
+  url: string;
+}
+
+export const BannerImage = styled.div<BannerImageProps>`
   height: 100%;
   background-size: cover;
   background-position: center;
   transition: all 0.5s ease;
+  
+  ${({ url }) => css`
+    background-image: url(${url});
+  `} 
 
   &::after {
     content: "";
@@ -10,9 +22,9 @@
     background-color: rgb(0 0 0 / 41%);
     height: 100%;
   }
-}
+`;
 
-.titleAndCarouselPosition {
+export const TitleAndCarouselPosition = styled.div`
   position: absolute;
   top: 54%;
   left: 50%;
@@ -21,16 +33,14 @@
   width: 100%;
   transform: translate(-50%, -50%);
 
-  &:first-child img {
-    margin-bottom: 25px;
-  }
-
   & img {
     width: 100%;
-  }
-}
+    margin-bottom: 25px;
 
-.carouselPosition {
+  }
+`;
+
+export const Carousel = styled.div`
   position: absolute;
   top: 55%;
   left: 47%;
@@ -41,28 +51,26 @@
     top: 110%;
     left: 47%;
   }
-}
+`;
 
-.scrollDown {
-  background: url(~/src/assets/icons/ArrowDown.svg) right 7px no-repeat;
+export const ScrollTo = styled(Link)`
+  background: url(${Arrow}) right 7px no-repeat;
   position: absolute;
   top: 90%;
   left: 50%;
   transform: translate(-50%, 0);
   padding-right: 40px;
   cursor: pointer;
-
   font-family: "Lato";
   font-weight: 300;
   font-size: 32px;
   line-height: 38px;
-
   color: white;
   -webkit-text-stroke: 0.4px black;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  @media (max-width: 500px) {
+  ${({ theme }) => theme.media.small} {
     font-size: 22px;
     padding-right: 30px;
   }
-}
+`;

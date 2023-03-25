@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-
 export default createGlobalStyle`
 * {
   padding: 0;
@@ -44,6 +43,7 @@ ul li {
 
 button {
   cursor: pointer;
+  background-color: transparent;
 }
 
 `;

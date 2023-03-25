@@ -11,13 +11,15 @@ const CarouselDots = ({ currentIdx, length, color = 'white', onChange }: Carouse
   const elements: JSX.Element[] = [];
 
   for (let index = 0; index < length; index++) {
+    const isActive = index === currentIdx;
+
     const element =
       <StyledCarouselDots
         onClick={() => onChange(index)}
         key={index}
-        disabled={index === currentIdx}
+        disabled={isActive}
         color={color}
-        active={index === currentIdx}
+        active={isActive}
       />;
 
     elements.push(element);

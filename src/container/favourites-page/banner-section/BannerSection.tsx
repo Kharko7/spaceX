@@ -1,13 +1,12 @@
-import styles from './BannerSection.module.scss';
+import { BannerBlock, Image, Title } from './BannerSection.styles';
 
 const BannerSection = () => {
 
   return (
-    <div className={styles.bannerBlock}>
-      <div className={styles.bannerImg}>
-        <h1 className={styles.bannerTitle}>favourites</h1>
-      </div>
-    </div>
+    <BannerBlock>
+      <Image />
+      <Title>favourites</Title>
+    </BannerBlock>
   );
 };
 

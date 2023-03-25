@@ -1,10 +1,15 @@
-import styles from './Login.module.scss';
+import styled from 'styled-components';
+
+const Body = styled.div`
+  background: #626262;
+  height: 100%;
+`;
 
 const Login = () => {
   return (
-    <div className={styles.wrapper}> </div>
+    <Body>
+    </Body>
   );
-
 };
 export default Login;
 
