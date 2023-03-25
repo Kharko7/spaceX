@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useLayoutEffect } from "react";
 import { useRecoilState } from 'recoil';
 
 import { RocketData } from "interface/Rocket";
@@ -16,7 +16,7 @@ export const useShowFavouritesFlights = () => {
       setLengthCards(length);
     }, [favoriteFlights.length]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -29,15 +29,15 @@ export const useShowFavouritesFlights = () => {
   };
 
   const removeCard = (id: string) => {
-    const filterStorageData = favoriteFlights.filter((rocketData: RocketData | null) => {
+    const filteredFavoriteData = favoriteFlights.filter((rocketData: RocketData | null) => {
       if (rocketData === null) {
         return false;
       }
       return rocketData.id !== id;
     });
 
-    setFavoriteFlights(filterStorageData);
-    setLengthCards(filterStorageData.length);
+    setFavoriteFlights(filteredFavoriteData);
+    setLengthCards(filteredFavoriteData.length);
   };
 
   const displayFavoriteFlights = [...favoriteFlights];
