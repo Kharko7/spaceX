@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spaceX/static/css/main.e3dc36e9.css",
-    "main.js": "/spaceX/static/js/main.5104b9f1.js",
+    "main.css": "/spaceX/static/css/main.c3d47973.css",
+    "main.js": "/spaceX/static/js/main.0b3be9ad.js",
     "static/media/Banner2.jpg": "/spaceX/static/media/Banner2.9e2a4efcc9068b7fd06a.jpg",
     "static/media/Banner1.jpg": "/spaceX/static/media/Banner1.9e5bbd9456e315a02a93.jpg",
     "static/media/Banner3.jpg": "/spaceX/static/media/Banner3.eed07d050843da92ad2a.jpg",
@@ -17,11 +17,11 @@
     "index.html": "/spaceX/index.html",
     "static/media/ArrowLeft.svg": "/spaceX/static/media/ArrowLeft.1d17abac79588e50d03bfcb1816de5e6.svg",
     "static/media/ArrowRight.svg": "/spaceX/static/media/ArrowRight.59e0b544ae4bd5260e6590659b1f9339.svg",
-    "main.e3dc36e9.css.map": "/spaceX/static/css/main.e3dc36e9.css.map",
-    "main.5104b9f1.js.map": "/spaceX/static/js/main.5104b9f1.js.map"
+    "main.c3d47973.css.map": "/spaceX/static/css/main.c3d47973.css.map",
+    "main.0b3be9ad.js.map": "/spaceX/static/js/main.0b3be9ad.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3dc36e9.css",
-    "static/js/main.5104b9f1.js"
+    "static/css/main.c3d47973.css",
+    "static/js/main.0b3be9ad.js"
   ]
 }
