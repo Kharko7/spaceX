@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 
-import AppContent from 'container/app-content';
+import AppContent from 'container/app-content/AppContent';
 import GlobalStyles from 'styles/Global';
 import { theme } from 'styles/Theme';
 

@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import Arrow from 'assets/icons/ArrowDown.svg';
-import { Link } from 'react-scroll';
 
 interface BannerImageProps {
   url: string;
@@ -50,27 +48,5 @@ export const Carousel = styled.div`
   @media (max-width: 900px) {
     top: 110%;
     left: 47%;
-  }
-`;
-
-export const ScrollTo = styled(Link)`
-  background: url(${Arrow}) right 7px no-repeat;
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding-right: 40px;
-  cursor: pointer;
-  font-family: "Lato";
-  font-weight: 300;
-  font-size: 32px;
-  line-height: 38px;
-  color: white;
-  -webkit-text-stroke: 0.4px black;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  ${({ theme }) => theme.media.small} {
-    font-size: 22px;
-    padding-right: 30px;
   }
 `;

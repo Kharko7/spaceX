@@ -5,7 +5,8 @@ import You from 'assets/text/You.svg';
 import SpaceIsWaiting from 'assets/text/The-space-is-waiting-for.svg';
 import { getFromLocalStorage, setToLocalStorage } from 'service/local-storage.service';
 import CarouselDots from 'components/carousel-dots/CarouselDots';
-import { BannerImage, Carousel, ScrollTo, TitleAndCarouselPosition } from './BannerSection.styles';
+import { BannerImage, Carousel, TitleAndCarouselPosition } from './BannerSection.styles';
+import ScrollTo from 'components/scroll-to/ScrollTo';
 
 const BannerSection = () => {
   const [currentIdx, setCurrentIdx] = useState<number>(getFromLocalStorage('bannerIdx'));
@@ -28,12 +29,7 @@ const BannerSection = () => {
           />
         </Carousel>
       </TitleAndCarouselPosition>
-      <ScrollTo
-        to="popularTours"
-        offset={3}
-        smooth={true}
-        duration={500}
-      >
+      <ScrollTo to="popularTours">
         Explore tours
       </ScrollTo>
     </BannerImage >
