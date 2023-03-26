@@ -1,10 +1,16 @@
-import { BannerBlock, Image, Title } from './BannerSection.styles';
+import { BannerBlock, Title } from './BannerSection.styles';
+import BannerImg from 'assets/banner/BannerCropped.jpg';
+import BannerImage from 'components/styles/BannerImage';
 
 const BannerSection = () => {
 
   return (
     <BannerBlock>
-      <Image />
+      <BannerImage
+        opacity={0.64}
+        src={BannerImg}
+        alt='Banner'
+      />
       <Title>favourites</Title>
     </BannerBlock>
   );

@@ -1,6 +1,4 @@
-import { Theme } from "interface/Styled";
-
-export const theme: Theme = {
+export const theme = {
   media: {
     extraLarge: '@media (max-width: 1160px)',
     large: '@media (max-width: 800px)',
@@ -13,3 +11,5 @@ export const theme: Theme = {
     container: 1280,
   },
 };
+
+export type Theme = typeof theme

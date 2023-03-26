@@ -1,25 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface BannerImageProps {
-  url: string;
-}
-
-export const BannerImage = styled.div<BannerImageProps>`
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: all 0.5s ease;
-  
-  ${({ url }) => css`
-    background-image: url(${url});
-  `} 
-
-  &::after {
-    content: "";
-    display: block;
-    background-color: rgb(0 0 0 / 41%);
-    height: 100%;
-  }
+  background-color: rgb(30, 30, 30);
+  padding-bottom: 33px;
+  position: relative;
 `;
 
 export const TitleAndCarouselPosition = styled.div`
@@ -34,7 +22,6 @@ export const TitleAndCarouselPosition = styled.div`
   & img {
     width: 100%;
     margin-bottom: 25px;
-
   }
 `;
 
